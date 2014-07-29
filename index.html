@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NodeJS Pianobar Frontend</title>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  </head>
+  <body>
+
+	<div class="media">
+		<img class="img-responsive pull-left" id="coverArt" />
+
+		<div class="media-body">
+			<h1 id="title" class="media-heading"></h1>
+
+			<h2 id="albumartist"></h2>
+		</div>
+	</div>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+
+	var socket = io();
+
+	socket.on('pianobar', function(msg) {
+		document["coverArt"].src = msg.coverArt;
+		document["coverArt"].alt = msg.album;
+		document.getElementById('title').innerHTML = msg.title;
+		var aa = 'on ' + msg.album + ' by ' + msg.artist;
+		console.log(aa);
+		document.getElementById('albumartist').innerHTML = aa;
+	});
+
+
+</script>
+</body>
+</html>

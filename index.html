@@ -9,11 +9,44 @@
   </head>
   <body>
 
+   <div class="btn-toolbar" id="controls">
+           <div class="btn-group">
+                   <a class="btn btn-default" onclick="sendCommand('pause');">
+                           <span class="glyphicon glyphicon-pause"></span>
+                   </a>
+                   <a class="btn btn-default" onclick="sendCommand('next');">
+                           <span class="glyphicon glyphicon-fast-forward"></span>
+                   </a>
+                   <a class="btn btn-default" onclick="sendCommand('love');">
+                           <span class="glyphicon glyphicon-thumbs-up"></span>
+                   </a>
+                   <a class="btn btn-default" onclick="sendCommand('ban');">
+                           <span class="glyphicon glyphicon-thumbs-down"></span>
+                   </a>
+                   <a class="btn btn-default" onclick="sendCommand('volumedown');">
+                           <span class="glyphicon glyphicon-volume-down"></span>
+                   </a>
+                   <a class="btn btn-default" onclick="sendCommand('volumeup');">
+                           <span class="glyphicon glyphicon-volume-up"></span>
+                   </a>
+           </div>
+           <div class="btn-group">
+                   <a class="btn btn-default" onclick="explainSong();">Explain </a>
+                   <a class="btn btn-default" onclick="stationSetup();">Station</a>
+                   <a class="btn btn-default" onclick="sendCommand('tired');">Tired</a>
+                   <!--<a class="btn btn-default" onclick="newStationSetup();">Create</a>-->
+           </div>
+   </div>
+
+
 	<div class="media">
 		<img class="img-responsive pull-left" id="coverArt" />
 
 		<div class="media-body">
-			<h1 id="title" class="media-heading"></h1>
+			<div>
+				<span id="lovehate" class="pull-left"></span>
+				<h1 id="title" class="media-heading"></h1>
+			</div>
 
 			<h2 id="albumartist"></h2>
 		</div>
@@ -25,7 +58,7 @@
 
 	var socket = io();
 
-	socket.on('pianobar', function(msg) {
+	socket.on('start', function(msg) {
 		document["coverArt"].src = msg.coverArt;
 		document["coverArt"].alt = msg.album;
 		document.getElementById('title').innerHTML = msg.title;
@@ -34,6 +67,19 @@
 		document.getElementById('albumartist').innerHTML = aa;
 	});
 
+	socket.on('lovehate', function(msg) {
+		if (msg.rating == 1) {
+			rating = 'love';
+		} else {
+			rating = 'hate';
+		}
+
+		document.getElementById('lovehate').innerHTML = rating;
+	});
+
+	function sendCommand(action) {
+		socket.emit('action', { action: action });
+	}
 
 </script>
 </body>

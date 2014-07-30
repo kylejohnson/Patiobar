@@ -1,7 +1,7 @@
 {
-  "name": "socket-chat-example",
+  "name": "nodejs-pianobar-frontend",
   "version": "0.0.1",
-  "description": "my first socket.io app",
+  "description": "A web frontend for pianobar, which is a CLI frontend for Pandora.",
   "dependencies": {
     "express": "^4.6.1",
     "socket.io": "^1.0.6"

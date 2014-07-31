@@ -12,8 +12,8 @@ npm install
 mkfifo ctl
 mkdir -p ~/.config/pianobar
 cat << EOF >> ~/.config/pianobar/config
-event_command = ~/nodejs-pianobar-frontend/eventcmd.sh
-fifo = ~/nodejs-pianobar-frontend/ctl
+event_command = ${PWD}/eventcmd.sh
+fifo = ${PWD}/ctl
 EOF
 node index.js
 ```

@@ -3,7 +3,7 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var fs = require('fs');
 
-var fifo = '/tmp/pianobar-ctl';
+var fifo = 'ctl';
 
 server.listen(3000);
 

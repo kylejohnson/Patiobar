@@ -28,10 +28,14 @@ clean () {
 }
 
 stationList () {
-	for i in $(eval echo "{1..$stationCount}"); do
+	rm ${PWD}/stationList
+
+	end=`expr $stationCount - 1`
+	
+	for i in $(eval echo "{0..$end}"); do
 		sn=station${i}
 		eval sn=\$$sn
-		echo "${i}:${sn}" > ${PWD}/stationList
+		echo "${i}:${sn}" >> ${PWD}/stationList
 	done
 }
 
@@ -40,12 +44,11 @@ case "$1" in
 	songstart)
 		query="/start/?title=${title}&artist=${artist}&coverArt=${coverArt}&album=${album}"
 		clean "$query"
-
-		stationList
 		;;
 
-#	songfinish)
-#		;;
+	songfinish)
+		stationList
+		;;
 
 	songlove)
 		query="/lovehate/?rating=${rating}"

@@ -11,6 +11,35 @@ app.get('/', function(req, res){
   res.sendfile('index.html');
 });
 
+function PidoraCTL(action) {
+	fs.open(fifo, 'w', 0644, function(error, fd) {
+	  if (error) {
+	    if (fd) {
+	      fs.close(fd);
+	    }
+	    console.log('Error opening fifo: ' + error);
+	    return;
+	  }
+	
+		buf = new Buffer(action);
+	
+	  fs.write(fd, buf, 0, action.length, null, function(error, written, buffer) {
+	    if (fd) {
+	      fs.close(fd);
+	    }
+	    if (error) {
+	      console.log('Error writing to fifo: ' + error);
+	    } else {
+	      if (written == action.length) {
+	        console.log('Input has been written successfully!');
+	      } else {
+	        console.log('Error: Only wrote ' + written + ' out of ' + action.length + ' bytes to fifo.');
+	      }
+	    }
+	  });
+	});
+}
+
 io.on('connection', function(socket) {
 	console.log('a user connected');
 
@@ -18,42 +47,8 @@ io.on('connection', function(socket) {
 		var action = data.action.substring(0, 1)
 		console.log(action);
 
-
-
-fs.open(fifo, 'w', 0644, function(error, fd) {
-  if (error) {
-    if (fd) {
-      fs.close(fd);
-    }
-    console.log('Error opening fifo: ' + error);
-    return;
-  }
-
-	buf = new Buffer(action);
-
-  fs.write(fd, buf, 0, action.length, null, function(error, written, buffer) {
-    if (fd) {
-      fs.close(fd);
-    }
-    if (error) {
-      console.log('Error writing to fifo: ' + error);
-    } else {
-      if (written == action.length) {
-        console.log('Input has been written successfully!');
-      } else {
-        console.log('Error: Only wrote ' + written + ' out of ' + action.length + ' bytes to fifo.');
-      }
-    }
-  });
-});
-
-
-
-
-
+		PidoraCTL(action);
 	});
-	
-
 });
 
 app.post('/start', function(request, response){

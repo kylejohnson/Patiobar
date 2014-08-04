@@ -40,6 +40,12 @@ function PidoraCTL(action) {
 	});
 }
 
+function readStations() {
+	var stations = fs.readFileSync('/home/kjohnson/stationList').toString().split("\n");
+
+	io.emit('stations', { stations: stations });
+}
+
 io.on('connection', function(socket) {
 	console.log('a user connected');
 
@@ -59,6 +65,8 @@ app.post('/start', function(request, response){
 	
 	io.emit('start', { artist: artist, title: title, coverArt: coverArt, album: album });
 
+	readStations();
+
 	response.send(request.query);
 });
 
@@ -67,5 +75,5 @@ app.post('/lovehate', function(request, response) {
 
 	io.emit('lovehate', { rating: rating });
 
-	console.log(request.query)
+	console.log(request.query);
 });

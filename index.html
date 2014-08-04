@@ -42,6 +42,9 @@
 			</div>
 
 			<h2 id="albumartist"></h2>
+
+			<ol id="stationList"></ol>
+
 		</div>
 	</div>
 
@@ -58,7 +61,6 @@
 		document["coverArt"].alt = msg.album;
 		document.getElementById('title').innerHTML = msg.title;
 		var aa = 'on ' + msg.album + ' by ' + msg.artist;
-		console.log(aa);
 		document.getElementById('albumartist').innerHTML = aa;
 	});
 
@@ -70,6 +72,26 @@
 		}
 
 		document.getElementById('lovehate').innerHTML = rating;
+	});
+
+	function appendStation(station) {
+		var ul = document.getElementById("stationList");
+		var li = document.createElement("li");
+		li.appendChild(document.createTextNode(station[1]));
+		li.setAttribute("id", station[0]);
+		ul.appendChild(li);
+	}
+
+	function parseStation(stations) {
+		var a = stations.split(":");
+		appendStation(a);
+	}
+
+	socket.on('stations', function(msg) {
+		document.getElementById("stationList").innerHTML = "";
+		for (i in msg.stations) {
+			parseStation(msg.stations[i]);
+		}
 	});
 
 	function sendCommand(action) {

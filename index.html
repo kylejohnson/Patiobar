@@ -8,35 +8,28 @@
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   </head>
   <body>
+	<div class="container">
 
-   <div class="btn-toolbar" id="controls">
-           <div class="btn-group">
-                   <a class="btn btn-default" onclick="sendCommand('pause');">
+           <div class="btn-group btn-group-justified" id="controls">
+                   <div class="btn-group"> <button type="button" class="btn btn-default btn-lg" onclick="sendCommand('p');">
                            <span class="glyphicon glyphicon-pause"></span>
-                   </a>
-                   <a class="btn btn-default" onclick="sendCommand('next');">
+                   </button> </div>
+                   <div class="btn-group"> <button type="button" class="btn btn-default btn-lg" onclick="sendCommand('n');">
                            <span class="glyphicon glyphicon-fast-forward"></span>
-                   </a>
-                   <a class="btn btn-default" onclick="sendCommand('love');">
+                   </button> </div>
+                   <div class="btn-group"> <button type="button" class="btn btn-default btn-lg" onclick="sendCommand('+');">
                            <span class="glyphicon glyphicon-thumbs-up"></span>
-                   </a>
-                   <a class="btn btn-default" onclick="sendCommand('ban');">
+                   </button> </div>
+                   <div class="btn-group"> <button type="button" class="btn btn-default btn-lg" onclick="sendCommand('-');">
                            <span class="glyphicon glyphicon-thumbs-down"></span>
-                   </a>
-                   <a class="btn btn-default" onclick="sendCommand('volumedown');">
+                   </button> </div>
+                   <div class="btn-group"> <button type="button" class="btn btn-default btn-lg" onclick="sendCommand('(');">
                            <span class="glyphicon glyphicon-volume-down"></span>
-                   </a>
-                   <a class="btn btn-default" onclick="sendCommand('volumeup');">
+                   </button> </div>
+                   <div class="btn-group"> <button type="button" class="btn btn-default btn-lg" onclick="sendCommand(')');">
                            <span class="glyphicon glyphicon-volume-up"></span>
-                   </a>
+                   </button> </div>
            </div>
-           <div class="btn-group">
-                   <a class="btn btn-default" onclick="explainSong();">Explain </a>
-                   <a class="btn btn-default" onclick="stationSetup();">Station</a>
-                   <a class="btn btn-default" onclick="sendCommand('tired');">Tired</a>
-                   <!--<a class="btn btn-default" onclick="newStationSetup();">Create</a>-->
-           </div>
-   </div>
 
 
 	<div class="media">
@@ -50,6 +43,8 @@
 
 			<h2 id="albumartist"></h2>
 		</div>
+	</div>
+
 	</div>
 
 

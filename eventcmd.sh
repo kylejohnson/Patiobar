@@ -14,6 +14,8 @@ while read L; do
 done < <(grep -e '^\(title\|artist\|album\|stationName\|songStationName\|pRet\|pRetStr\|wRet\|wRetStr\|songDuration\|songPlayed\|rating\|coverArt\|stationCount\|station[0-9]*\)=' /dev/stdin) # don't overwrite $1...
 
 
+
+
 post () {
 	url=${baseurl}${1}
 	curl -s -XPOST $url >/dev/null 2>&1
@@ -25,11 +27,21 @@ clean () {
 	post $clean
 }
 
+stationList () {
+	for i in $(eval echo "{1..$stationCount}"); do
+		sn=station${i}
+		eval sn=\$$sn
+		echo "${i}:${sn}" > ${PWD}/stationList
+	done
+}
+
 
 case "$1" in
 	songstart)
 		query="/start/?title=${title}&artist=${artist}&coverArt=${coverArt}&album=${album}"
 		clean "$query"
+
+		stationList
 		;;
 
 #	songfinish)

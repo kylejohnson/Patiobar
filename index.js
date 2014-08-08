@@ -7,9 +7,9 @@ var fifo = 'ctl';
 
 server.listen(3000);
 
-app.get('/', function(req, res){
-  res.sendfile('index.html');
-});
+// Routing
+app.use(express.static(__dirname + '/views'));
+
 
 function PidoraCTL(action) {
 	fs.open(fifo, 'w', 0644, function(error, fd) {

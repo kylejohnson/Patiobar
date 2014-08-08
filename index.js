@@ -1,5 +1,6 @@
+var express = require('express');
 var app = require('express')();
-var server = require('http').Server(app);
+var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var fs = require('fs');
 
@@ -9,6 +10,16 @@ server.listen(3000);
 
 // Routing
 app.use(express.static(__dirname + '/views'));
+
+function readCurrentSong() {
+	var currentSong = fs.readFileSync('/home/kjohnson/currentSong').toString()
+
+	if (currentSong) {
+			var a = currentSong.split(',');
+			io.emit('start', { artist: a[0], title: a[1], coverArt: a[3], album: a[2] });
+	}
+
+}
 
 
 function PidoraCTL(action) {
@@ -48,6 +59,8 @@ function readStations() {
 
 io.on('connection', function(socket) {
 	console.log('a user connected');
+	readCurrentSong();
+	readStations();
 
 	socket.on('action', function (data) {
 		var action = data.action.substring(0, 1)
@@ -55,7 +68,6 @@ io.on('connection', function(socket) {
 
 		PidoraCTL(action);
 	});
-});
 
 app.post('/start', function(request, response){
 	artist = request.query.artist;
@@ -76,4 +88,7 @@ app.post('/lovehate', function(request, response) {
 	io.emit('lovehate', { rating: rating });
 
 	console.log(request.query);
+});
+
+
 });

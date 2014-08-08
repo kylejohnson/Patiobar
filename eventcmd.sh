@@ -44,6 +44,8 @@ case "$1" in
 	songstart)
 		query="/start/?title=${title}&artist=${artist}&coverArt=${coverArt}&album=${album}"
 		clean "$query"
+
+		echo -n "${artist},${title},${album},${coverArt}" > ${PWD}/currentSong
 		;;
 
 	songfinish)

@@ -6,16 +6,20 @@
 		document.getElementById('title').innerHTML = msg.title;
 		var aa = 'on ' + msg.album + ' by ' + msg.artist;
 		document.getElementById('albumartist').innerHTML = aa;
+
+		if (msg.rating == 1) {
+			document.getElementById("love").className = "btn btn-success pull-left";
+		} else {
+			document.getElementById("love").className = "btn btn-default pull-left";
+
+		}
 	});
 
 	socket.on('lovehate', function(msg) {
 		if (msg.rating == 1) {
-			rating = 'love';
-		} else {
-			rating = 'hate';
+			document.getElementById("love").className = "btn btn-success pull-left";
 		}
 
-		document.getElementById('lovehate').innerHTML = rating;
 	});
 
 	function appendStation(station) {

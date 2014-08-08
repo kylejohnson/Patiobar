@@ -1,7 +1,7 @@
 NodeJS Pianobar Frontend
 ========================
 
-![Frontend Screenshot](http://i.imgur.com/XyNO2qT.png)
+![Frontend Screenshot](http://i.imgur.com/XyNO2qTl.png)
 
 A web frontend for pianobar, which is a CLI frontend for Pandora.
 

@@ -1,6 +1,8 @@
 NodeJS Pianobar Frontend
 ========================
 
+![Frontend Screenshot](http://i.imgur.com/XyNO2qT.png)
+
 A web frontend for pianobar, which is a CLI frontend for Pandora.
 
 Provides a simple way for controlling what is playing on the radio.

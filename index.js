@@ -69,6 +69,12 @@ io.on('connection', function(socket) {
 		PidoraCTL(action);
 	});
 
+	socket.on('changeStation', function (data) {
+		var stationId = data.stationId;
+		var cmd = 's' + stationId + '\n';
+		PidoraCTL(cmd);
+	});
+
 app.post('/start', function(request, response){
 	artist = request.query.artist;
 	title = request.query.title;

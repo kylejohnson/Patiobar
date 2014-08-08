@@ -19,11 +19,19 @@
 	});
 
 	function appendStation(station) {
-		var ul = document.getElementById("stationList");
-		var li = document.createElement("li");
-		li.appendChild(document.createTextNode(station[1]));
-		li.setAttribute("id", station[0]);
-		ul.appendChild(li);
+		var s = document.getElementById('stations');
+		var b = document.createElement('button');
+		var stationId = station[0];
+		var stationName = station[1].replace("Radio", "");
+
+		var linkText = document.createTextNode(stationName);
+
+		b.appendChild(linkText);
+		b.setAttribute('type', 'button');
+		b.setAttribute('onClick', "changeStation('" + stationId + "')");
+		b.setAttribute('class', 'btn btn-default navbar-btn btn-sm');
+
+		s.appendChild(b);
 	}
 
 	function parseStation(stations) {
@@ -32,7 +40,8 @@
 	}
 
 	socket.on('stations', function(msg) {
-		document.getElementById("stationList").innerHTML = "";
+		document.getElementById('stations').innerHTML = "";
+		msg.stations.pop();
 		for (i in msg.stations) {
 			parseStation(msg.stations[i]);
 		}
@@ -40,4 +49,8 @@
 
 	function sendCommand(action) {
 		socket.emit('action', { action: action });
+	}
+
+	function changeStation(stationId) {
+		socket.emit('changeStation', { stationId: stationId });
 	}

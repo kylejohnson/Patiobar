@@ -8,6 +8,23 @@
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   </head>
   <body>
+	<nav class="navbar navbar-inverse" role="navigation">
+		<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#stations">
+						<span class="sr-only">Toggle Stations</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<p class="navbar-brand">Patiobar</p>
+				</div>
+
+				<div class="text-center collapse navbar-collapse" id="stations">
+				</div>
+		</div>
+	</nav> <!-- End navbar -->
+
 	<div class="container">
 
            <div class="btn-group btn-group-justified" id="controls">
@@ -43,7 +60,6 @@
 
 			<h2 id="albumartist"></h2>
 
-			<ol id="stationList"></ol>
 
 		</div>
 	</div>
@@ -52,6 +68,8 @@
 
 
 <script src="/socket.io/socket.io.js"></script>
+<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="/main.js"></script>
 </body>
 </html>

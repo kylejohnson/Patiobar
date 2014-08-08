@@ -1,5 +1,5 @@
-NodeJS Pianobar Frontend
-========================
+Patiobar
+========
 
 ![Frontend Screenshot](http://i.imgur.com/XyNO2qTl.png)
 
@@ -31,3 +31,9 @@ fifo = ${PWD}/ctl
 EOF
 node index.js
 ```
+
+Support
+-------
+
+If something doesn't work, please open a
+[github issue](https://github.com/kylejohnson/Patiobar/issues).

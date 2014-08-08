@@ -42,7 +42,7 @@ function PidoraCTL(action) {
 	      console.log('Error writing to fifo: ' + error);
 	    } else {
 	      if (written == action.length) {
-	        console.log('Input has been written successfully!');
+	        console.log(action + ' has been written successfully!');
 	      } else {
 	        console.log('Error: Only wrote ' + written + ' out of ' + action.length + ' bytes to fifo.');
 	      }
@@ -64,8 +64,6 @@ io.on('connection', function(socket) {
 
 	socket.on('action', function (data) {
 		var action = data.action.substring(0, 1)
-		console.log(action);
-
 		PidoraCTL(action);
 	});
 

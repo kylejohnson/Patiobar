@@ -12,7 +12,7 @@ server.listen(3000);
 app.use(express.static(__dirname + '/views'));
 
 function readCurrentSong() {
-	var currentSong = fs.readFileSync('/home/kjohnson/currentSong').toString()
+	var currentSong = fs.readFileSync(process.env.HOME + '/currentSong').toString()
 
 	if (currentSong) {
 			var a = currentSong.split(',');
@@ -52,7 +52,7 @@ function PidoraCTL(action) {
 }
 
 function readStations() {
-	var stations = fs.readFileSync('/home/kjohnson/stationList').toString().split("\n");
+	var stations = fs.readFileSync(process.env.HOME + '/stationList').toString().split("\n");
 
 	io.emit('stations', { stations: stations });
 }

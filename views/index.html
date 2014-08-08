@@ -1,58 +1,57 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="patiobar">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>NodeJS Pianobar Frontend</title>
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/main.css">
-	<script src="/socket.io/socket.io.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
-	<script src="/controller.js"></script>
   </head>
   <body>
 	<div class="container">
-		<div ng-controller="SongController">
 
-    	       <div class="btn-group btn-group-justified" id="controls">
-    	               <div class="btn-group"> <button type="button" class="btn btn-default btn-lg" ng-click="sendCommand('p');">
-    	                       <span class="glyphicon glyphicon-pause"></span>
-    	               </button> </div>
-    	               <div class="btn-group"> <button type="button" class="btn btn-default btn-lg" ng-click="sendCommand('n');">
-    	                       <span class="glyphicon glyphicon-fast-forward"></span>
-    	               </button> </div>
-    	               <div class="btn-group"> <button type="button" class="btn btn-default btn-lg" ng-click="sendCommand('+');">
-    	                       <span class="glyphicon glyphicon-thumbs-up"></span>
-    	               </button> </div>
-    	               <div class="btn-group"> <button type="button" class="btn btn-default btn-lg" ng-click="sendCommand('-');">
-    	                       <span class="glyphicon glyphicon-thumbs-down"></span>
-    	               </button> </div>
-    	               <div class="btn-group"> <button type="button" class="btn btn-default btn-lg" ng-click="sendCommand('(');">
-    	                       <span class="glyphicon glyphicon-volume-down"></span>
-    	               </button> </div>
-    	               <div class="btn-group"> <button type="button" class="btn btn-default btn-lg" ng-click="sendCommand(')');">
-    	                       <span class="glyphicon glyphicon-volume-up"></span>
-    	               </button> </div>
-    	       </div>
+           <div class="btn-group btn-group-justified" id="controls">
+                   <div class="btn-group"> <button type="button" class="btn btn-default btn-lg" onclick="sendCommand('p');">
+                           <span class="glyphicon glyphicon-pause"></span>
+                   </button> </div>
+                   <div class="btn-group"> <button type="button" class="btn btn-default btn-lg" onclick="sendCommand('n');">
+                           <span class="glyphicon glyphicon-fast-forward"></span>
+                   </button> </div>
+                   <div class="btn-group"> <button type="button" class="btn btn-default btn-lg" onclick="sendCommand('+');">
+                           <span class="glyphicon glyphicon-thumbs-up"></span>
+                   </button> </div>
+                   <div class="btn-group"> <button type="button" class="btn btn-default btn-lg" onclick="sendCommand('-');">
+                           <span class="glyphicon glyphicon-thumbs-down"></span>
+                   </button> </div>
+                   <div class="btn-group"> <button type="button" class="btn btn-default btn-lg" onclick="sendCommand('(');">
+                           <span class="glyphicon glyphicon-volume-down"></span>
+                   </button> </div>
+                   <div class="btn-group"> <button type="button" class="btn btn-default btn-lg" onclick="sendCommand(')');">
+                           <span class="glyphicon glyphicon-volume-up"></span>
+                   </button> </div>
+           </div>
 
 
-			<div class="center-block panel panel-default">
-				<div class="panel-body">
-					<img class="img-responsive img-rounded" ng-src="{{coverArt}}" alt="{{album}}" />
+	<div class="media">
+		<img class="media-object img-responsive pull-left" id="coverArt" />
 
-					<h1 class="media-heading" ng-bind="title"></h1>
-					<h2 ng-bind="albumartist"></h2>
-				</div>
+		<div class="media-body">
+			<div>
+				<span id="lovehate" class="pull-left"></span>
+				<h1 id="title" class="media-heading"></h1>
 			</div>
-		</div>
 
-		<div ng-controller="StationController">
-			<ul id="stationList" ng-repeat="station in stations">
-				<li><p id="{{station.id}}">{{station.name}}</p></li>
-			</ul>
+			<h2 id="albumartist"></h2>
+
+			<ol id="stationList"></ol>
+
 		</div>
+	</div>
 
 	</div>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/main.js"></script>
 </body>
 </html>

@@ -42,7 +42,7 @@ stationList () {
 
 case "$1" in
 	songstart)
-		query="/start/?title=${title}&artist=${artist}&coverArt=${coverArt}&album=${album}"
+		query="/start/?title=${title}&artist=${artist}&coverArt=${coverArt}&album=${album}&rating=${rating}"
 		clean "$query"
 
 		echo -n "${artist},${title},${album},${coverArt}" > ${PWD}/currentSong

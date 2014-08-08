@@ -74,8 +74,9 @@ app.post('/start', function(request, response){
 	title = request.query.title;
 	album = request.query.album;
 	coverArt = request.query.coverArt;
+	rating = request.query.rating;
 	
-	io.emit('start', { artist: artist, title: title, coverArt: coverArt, album: album });
+	io.emit('start', { artist: artist, title: title, coverArt: coverArt, album: album, rating: rating });
 
 	readStations();
 

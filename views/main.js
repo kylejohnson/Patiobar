@@ -1,11 +1,14 @@
 	var socket = io();
 
 	socket.on('start', function(msg) {
-		document["coverArt"].src = msg.coverArt;
-		document["coverArt"].alt = msg.album;
-		document.getElementById('title').innerHTML = msg.title;
+		$( "#coverArt" ).attr({
+			alt: msg.album,
+			src: msg.coverArt,
+			title: msg.album
+		});
+		$("#title").text(msg.title);
 		var aa = 'on ' + msg.album + ' by ' + msg.artist;
-		document.getElementById('albumartist').innerHTML = aa;
+		$("#albumartist").text(aa);
 
 		if (msg.rating == 1) {
 			document.getElementById("love").className = "btn btn-success pull-left";

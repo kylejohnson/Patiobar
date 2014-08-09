@@ -52,11 +52,12 @@ case "$1" in
 		clean "$query"
 
 		echo -n "${artist},${title},${album},${coverArt}" > "$currentSong"
-		;;
 
-	songfinish)
 		stationList
 		;;
+
+#	songfinish)
+#		;;
 
 	songlove)
 		query="/lovehate/?rating=${rating}"

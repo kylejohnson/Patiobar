@@ -7,6 +7,10 @@ baseurl="${host}:${port}"
 
 # Here be dragons! #
 # (Don't change anything below) #
+
+stationList="${HOME}/.config/pianobar/stationList"
+currentSong="${HOME}/.config/pianobar/currentSong"
+
 while read L; do
 	k="`echo "$L" | cut -d '=' -f 1`"
 	v="`echo "$L" | cut -d '=' -f 2`"
@@ -28,14 +32,16 @@ clean () {
 }
 
 stationList () {
-	rm ${PWD}/stationList
+	if [ -f "$stationList" ]; then
+		rm "$stationList"
+	fi
 
 	end=`expr $stationCount - 1`
 	
 	for i in $(eval echo "{0..$end}"); do
 		sn=station${i}
 		eval sn=\$$sn
-		echo "${i}:${sn}" >> ${PWD}/stationList
+		echo "${i}:${sn}" >> "$stationList"
 	done
 }
 
@@ -45,7 +51,7 @@ case "$1" in
 		query="/start/?title=${title}&artist=${artist}&coverArt=${coverArt}&album=${album}&rating=${rating}"
 		clean "$query"
 
-		echo -n "${artist},${title},${album},${coverArt}" > ${PWD}/currentSong
+		echo -n "${artist},${title},${album},${coverArt}" > "$currentSong"
 		;;
 
 	songfinish)

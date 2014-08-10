@@ -13,12 +13,13 @@ body {
 
 #title {
 	color: orange;
+	font-size:130%;
 }
 
 #albumartist {
 	color: orange;
 	font-style: italic;
-	font-size:80%;
+	font-size:110%;
 }
 
 #player {

@@ -36,28 +36,18 @@
 					<img class="center-block img-rounded img-responsive" id="coverArt" />
 
 					<div id="details">
-						<button type="button" id="love" class="pull-left btn btn-default" onclick="sendCommand('+');"> <span class="glyphicon glyphicon-thumbs-up"></span> </button>
-						<button type="button" class="pull-right btn btn-default" onclick="sendCommand('-');"> <span class="glyphicon glyphicon-thumbs-down"></span> </button>
-
 						<p id="title" class="media-heading"></p>
 						<p id="albumartist"></p>
-
 					</div>
 
 
            			<div id="controls">
-           			        <button id="pauseplay" type="button" class="btn btn-default" onclick="sendCommand('p');">
-           			                <span class="glyphicon glyphicon-pause"></span>
-           			        </button>
-           			        <button type="button" class="btn btn-default" onclick="sendCommand('n');">
-           			                <span class="glyphicon glyphicon-fast-forward"></span>
-           			        </button> 
-           			        <button type="button" class="btn btn-default" onclick="sendCommand('(');">
-           			                <span class="glyphicon glyphicon-volume-down"></span>
-           			        </button>
-           			        <button type="button" class="btn btn-default" onclick="sendCommand(')');">
-           			                <span class="glyphicon glyphicon-volume-up"></span>
-           			        </button>
+							<button type="button" id="love" class="pull-left btn btn-default" onclick="sendCommand('+');"> <span class="glyphicon glyphicon-thumbs-up"></span> </button>
+           			        <button id="pauseplay" type="button" class="btn btn-default" onclick="sendCommand('p');"> <span class="glyphicon glyphicon-pause"></span> </button>
+           			        <button type="button" class="btn btn-default" onclick="sendCommand('n');"> <span class="glyphicon glyphicon-fast-forward"></span> </button> 
+           			        <button type="button" class="btn btn-default" onclick="sendCommand('(');"> <span class="glyphicon glyphicon-volume-down"></span> </button>
+           			        <button type="button" class="btn btn-default" onclick="sendCommand(')');"> <span class="glyphicon glyphicon-volume-up"></span> </button>
+							<button type="button" class="pull-right btn btn-default" onclick="sendCommand('-');"> <span class="glyphicon glyphicon-thumbs-down"></span> </button>
            			</div>
 
 					

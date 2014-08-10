@@ -61,3 +61,8 @@
 	function changeStation(stationId) {
 		socket.emit('changeStation', { stationId: stationId });
 	}
+
+	$("#pauseplay").click(function() {
+		$(this).children().toggleClass('glyphicon-pause');
+		$(this).children().toggleClass('glyphicon-play');
+	});

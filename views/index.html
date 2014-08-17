@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="patiobarApp">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, user-scalable=no">
-    <title>Patiobar</title>
-	<link rel="stylesheet" href="/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/css/main.css">
-</head>
-<body>
-	<nav class="navbar navbar-inverse" role="navigation" ng-controller="StationController">
-		<div class="container-fluid">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<title>Patiobar</title>
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/css/main.css">
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse" role="navigation" ng-controller="StationController">
+			<div class="container-fluid">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#stations">
 						<span class="sr-only">Toggle Stations</span>
@@ -19,50 +19,41 @@
 						<span class="icon-bar"></span>
 					</button>
 					<p class="navbar-brand">Patiobar</p>
-				</div>
-
+				</div><!-- End navbar-header -->
+	
 				<div class="text-center collapse navbar-collapse" id="stations">
 					<button type="button" ng-repeat="station in stations" class="btn btn-default navbar-btn btn-sm" ng-click="changeStation(station.id);">{{station.name}}</button>
-				</div>
-		</div>
-	</nav> <!-- End navbar -->
-
-	<div class="container" ng-controller="SongController">
-
-
-
-
+				</div> 
+			</div> <!-- End container-fluid -->
+		</nav> 
+	
+		<div class="container" ng-controller="SongController">
 			<div id="player" class="center-block">
 				<div class="text-center">
 					<img class="center-block img-rounded img-responsive" id="coverArt" ng-src="{{src}}" alt="{{alt}}">
-
+	
 					<div id="details">
 						<p id="title" class="media-heading">{{title}}</p>
 						<p id="albumartist">{{albumartist}}</p>
 					</div>
-
-
-           			<div id="controls">
-							<button type="button" id="love" class="pull-left btn btn-default" ng-click="sendCommand('+');"> <span class="glyphicon glyphicon-thumbs-up"></span> </button>
-           			        <button id="pauseplay" type="button" class="btn btn-default" ng-click="sendCommand('p');"> <span class="glyphicon glyphicon-pause"></span> </button>
-           			        <button type="button" class="btn btn-default" ng-click="sendCommand('n');"> <span class="glyphicon glyphicon-fast-forward"></span> </button> 
-           			        <button type="button" class="btn btn-default" ng-click="sendCommand('(');"> <span class="glyphicon glyphicon-volume-down"></span> </button>
-           			        <button type="button" class="btn btn-default" ng-click="sendCommand(')');"> <span class="glyphicon glyphicon-volume-up"></span> </button>
-							<button type="button" class="pull-right btn btn-default" ng-click="sendCommand('-');"> <span class="glyphicon glyphicon-thumbs-down"></span> </button>
-           			</div>
-
-					
-				</div>
+	
+	     		<div id="controls">
+						<button type="button" id="love" class="pull-left btn btn-default" ng-click="sendCommand('+');"> <span class="glyphicon glyphicon-thumbs-up"></span> </button>
+						<button id="pauseplay" type="button" class="btn btn-default" ng-click="sendCommand('p');"> <span class="glyphicon glyphicon-pause"></span> </button>
+						<button type="button" class="btn btn-default" ng-click="sendCommand('n');"> <span class="glyphicon glyphicon-fast-forward"></span> </button> 
+						<button type="button" class="btn btn-default" ng-click="sendCommand('(');"> <span class="glyphicon glyphicon-volume-down"></span> </button>
+						<button type="button" class="btn btn-default" ng-click="sendCommand(')');"> <span class="glyphicon glyphicon-volume-up"></span> </button>
+						<button type="button" class="pull-right btn btn-default" ng-click="sendCommand('-');"> <span class="glyphicon glyphicon-thumbs-down"></span> </button>
+					</div>
+				</div> <!-- End text-center -->
 			</div> <!-- End Player -->
+		</div> <!-- End container (SongController) -->
 
 
-	</div>
-
-
-<script src="/socket.io/socket.io.js"></script>
-<script src="/js/jquery-2.1.1.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/main.js"></script>
-</body>
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="/js/jquery-2.1.1.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+		<script src="/js/main.js"></script>
+	</body>
 </html>

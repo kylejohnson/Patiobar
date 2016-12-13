@@ -53,6 +53,7 @@ function SongController($scope, socket) {
 		$scope.src = msg.coverArt;
 		$scope.alt = msg.album;
 		$scope.title = msg.title;
+		$scope.rating = msg.rating;
 
 		if (msg.rating == 1) {
 			document.getElementById("love").className = "btn btn-success pull-left";

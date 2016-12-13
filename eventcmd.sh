@@ -51,7 +51,7 @@ case "$1" in
 		query="/start/?title=${title}&artist=${artist}&coverArt=${coverArt}&album=${album}&rating=${rating}"
 		clean "$query"
 
-		echo -n "${artist},${title},${album},${coverArt}" > "$currentSong"
+		echo -n "${artist},${title},${album},${coverArt},${rating}" > "$currentSong"
 
 		stationList
 		;;

@@ -16,7 +16,7 @@ function readCurrentSong() {
 
 	if (currentSong) {
 			var a = currentSong.split(',');
-			io.emit('start', { artist: a[0], title: a[1], coverArt: a[3], album: a[2] });
+			io.emit('start', { artist: a[0], title: a[1], album: a[2], coverArt: a[3], rating: a[4] });
 	}
 
 }

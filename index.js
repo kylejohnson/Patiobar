@@ -16,7 +16,7 @@ function readCurrentSong() {
 	var currentSong = fs.readFileSync(process.env.HOME + '/.config/pianobar/currentSong').toString()
 
 	if (currentSong) {
-			var a = currentSong.split(',');
+			var a = currentSong.split(',,,');
 			io.emit('start', { artist: a[0], title: a[1], album: a[2], coverArt: a[3], rating: a[4] });
 	}
 

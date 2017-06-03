@@ -4,9 +4,10 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var fs = require('fs');
 
-var fifo = 'ctl';
+var fifo = process.env.PIANOBAR_FIFO || 'ctl';
+var listenPort = process.env.PATIOBAR_PORT || 3000;
 
-server.listen(3000);
+server.listen(listenPort);
 
 // Routing
 app.use(express.static(__dirname + '/views'));

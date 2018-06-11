@@ -37,7 +37,9 @@ function PidoraCTL(action) {
 	
 	  fs.write(fd, buf, 0, action.length, null, function(error, written, buffer) {
 	    if (fd) {
-	      fs.close(fd);
+	      fs.close(fd, function() {
+	        console.log(action + ' has been written successfully!');
+              });
 	    }
 	    if (error) {
 	      console.log('Error writing to fifo: ' + error);

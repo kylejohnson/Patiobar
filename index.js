@@ -17,7 +17,7 @@ function readCurrentSong() {
 
 	if (currentSong) {
 			var a = currentSong.split(',,,');
-			io.emit('start', { artist: a[0], title: a[1], album: a[2], coverArt: a[3], rating: a[4] });
+			io.emit('start', { artist: a[0], title: a[1], album: a[2], coverArt: a[3], rating: a[4], stationName: a[5] });
 	}
 
 }
@@ -80,8 +80,9 @@ app.post('/start', function(request, response){
 	album = request.query.album;
 	coverArt = request.query.coverArt;
 	rating = request.query.rating;
+	stationName = request.query.stationName;
 	
-	io.emit('start', { artist: artist, title: title, coverArt: coverArt, album: album, rating: rating });
+	io.emit('start', { artist: artist, title: title, coverArt: coverArt, album: album, rating: rating, stationName: stationName });
 
 	readStations();
 

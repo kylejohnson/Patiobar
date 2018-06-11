@@ -48,10 +48,10 @@ stationList () {
 
 case "$1" in
 	songstart)
-		query="/start/?title=${title}&artist=${artist}&coverArt=${coverArt}&album=${album}&rating=${rating}"
+		query="/start/?title=${title}&artist=${artist}&coverArt=${coverArt}&album=${album}&rating=${rating}&stationName=${stationName}"
 		clean "$query"
 
-		echo -n "${artist},,,${title},,,${album},,,${coverArt},,,${rating}" > "$currentSong"
+		echo -n "${artist},,,${title},,,${album},,,${coverArt},,,${rating},,,${stationName}" > "$currentSong"
 
 		stationList
 		;;

@@ -39,7 +39,8 @@ fi
 
 echo -n "Creating default ~/.config/pianobar/config file...   "
 if mkdir -p "${configdir}"; then
-	cat << EOF >> "${configdir}/config"
+    if ! [ -f "${configdir}/config" ]; then
+	if cat << EOF >> "${configdir}/config"; then
 user = user@example.com
 password = password
 #autostart_station = 123456
@@ -48,7 +49,11 @@ event_command = ${event_command}
 fifo = ${fifo}
 tls_fingerprint = ${tls_fingerprint}
 EOF
-	echo "success"
-else
-	echo "failure"
+            echo "success"
+        else
+            echo "failure"
+        fi
+    else
+        echo "${configdir}/config already exists"
+    fi
 fi

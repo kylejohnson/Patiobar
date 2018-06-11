@@ -17,7 +17,7 @@ function readCurrentSong() {
 
 	if (currentSong) {
 			var a = currentSong.split(',,,');
-			io.emit('start', { artist: a[0], title: a[1], album: a[2], coverArt: a[3], rating: a[4] });
+			io.emit('start', { artist: a[0], title: a[1], album: a[2], coverArt: a[3], rating: a[4], stationName: a[5] });
 	}
 
 }
@@ -33,11 +33,13 @@ function PidoraCTL(action) {
 	    return;
 	  }
 	
-		buf = new Buffer(action);
+		buf = new Buffer.from(action);
 	
 	  fs.write(fd, buf, 0, action.length, null, function(error, written, buffer) {
 	    if (fd) {
-	      fs.close(fd);
+	      fs.close(fd, function() {
+	        console.log(action + ' has been written successfully!');
+              });
 	    }
 	    if (error) {
 	      console.log('Error writing to fifo: ' + error);
@@ -80,8 +82,9 @@ app.post('/start', function(request, response){
 	album = request.query.album;
 	coverArt = request.query.coverArt;
 	rating = request.query.rating;
+	stationName = request.query.stationName;
 	
-	io.emit('start', { artist: artist, title: title, coverArt: coverArt, album: album, rating: rating });
+	io.emit('start', { artist: artist, title: title, coverArt: coverArt, album: album, rating: rating, stationName: stationName });
 
 	readStations();
 

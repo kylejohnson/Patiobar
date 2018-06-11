@@ -33,13 +33,18 @@ function StationController($scope, socket) {
 		for (i in msg.stations) {
 			var array = msg.stations[i].split(":");
 			var id = array[0];
-			var name = array[1].replace("Radio", "");
+			var name = array[1].replace(" Radio", "");
 
 			s.push({name: name, id: id});
 		}
 
 		$scope.stations = s;
 	});
+
+	socket.on('start', function(msg) {
+                var stationName = msg.stationName.substr(0, msg.stationName.length - 6);
+		$scope.stationName = stationName;
+        });
 
 	$scope.changeStation = function(stationId) {
 		socket.emit('changeStation', { stationId: stationId });

@@ -22,7 +22,7 @@
 				</div><!-- End navbar-header -->
 	
 				<div class="text-center collapse navbar-collapse" id="stations">
-					<button type="button" ng-repeat="station in stations" class="btn btn-default navbar-btn btn-sm" ng-click="changeStation(station.id);">{{station.name}}</button>
+					<button type="button" ng-repeat="station in stations" class="btn btn-default navbar-btn btn-sm" ng-click="changeStation(station.id);" ng-class="{'btn-success': stationName == station.name}">{{station.name}}</button>
 				</div> 
 			</div> <!-- End container-fluid -->
 		</nav> 

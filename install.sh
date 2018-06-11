@@ -7,6 +7,14 @@ fifo=${PWD}/ctl
 configdir=~/.config/pianobar
 repo='https://github.com/kylejohnson/Patiobar.git'
 
+if ! which npm &> /dev/null; then
+    echo "npm is not installed!"
+    echo "Installing NPM is beyond the scope of this installer as methods vary by distro, OS and preference."
+    echo "Note that NPM is usually installed with Node.js."
+    echo "https://nodejs.org/en/download/ is a decent place to start."
+    exit 1;
+fi
+
 # Don't clone if already in the repo
 if [ ! -d .git ]; then
 	if git clone "${repo}"; then

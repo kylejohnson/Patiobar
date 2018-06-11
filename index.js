@@ -33,7 +33,7 @@ function PidoraCTL(action) {
 	    return;
 	  }
 	
-		buf = new Buffer(action);
+		buf = new Buffer.from(action);
 	
 	  fs.write(fd, buf, 0, action.length, null, function(error, written, buffer) {
 	    if (fd) {

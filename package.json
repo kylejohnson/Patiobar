@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A web frontend for pianobar, which is a CLI frontend for Pandora.",
   "dependencies": {
-    "express": "4.6.1",
+    "express": "^4.17.1",
     "socket.io": "2.4.0"
   }
 }

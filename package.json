@@ -4,6 +4,6 @@
   "description": "A web frontend for pianobar, which is a CLI frontend for Pandora.",
   "dependencies": {
     "express": "4.6.1",
-    "socket.io": "^1.0.6"
+    "socket.io": "2.4.0"
   }
 }

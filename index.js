@@ -97,6 +97,7 @@ app.post('/lovehate', function(request, response) {
 	io.emit('lovehate', { rating: rating });
 
 	console.log(request.query);
+	response.send(request.query);
 });
 
 

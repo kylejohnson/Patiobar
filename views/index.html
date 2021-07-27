@@ -1,28 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" ng-app="patiobarApp">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
 		<title>Patiobar</title>
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/css/bootstrap-icons.css">
 		<link rel="stylesheet" href="/css/main.css">
 	</head>
 	<body>
-		<nav class="navbar navbar-inverse" role="navigation" ng-controller="StationController">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation" ng-controller="StationController">
 			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#stations">
-						<span class="sr-only">Toggle Stations</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<p class="navbar-brand"><a href="https://github.com/kylejohnson/Patiobar">Patiobar</a></p>
-				</div><!-- End navbar-header -->
-	
+				<a class="navbar-brand" href="https://github.com/kylejohnson/Patiobar">Patiobar</a>
+				
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#stations" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				
 				<div class="text-center collapse navbar-collapse" id="stations">
-					<button type="button" ng-repeat="station in stations" class="btn btn-default navbar-btn btn-sm" ng-click="changeStation(station.id);" ng-class="{'btn-success': stationName == station.name}">{{station.name}}</button>
+					<button type="button" ng-repeat="station in stations" class="btn btn-sm btn-outline-secondary" ng-click="changeStation(station.id);" ng-class="{'btn-outline-success': stationName == station.name}">{{station.name}}</button>
 				</div> 
 			</div> <!-- End container-fluid -->
 		</nav> 
@@ -30,7 +27,7 @@
 		<div class="container" ng-controller="SongController">
 			<div id="player" class="center-block">
 				<div class="text-center">
-					<img class="center-block img-rounded img-responsive" id="coverArt" ng-src="{{src}}" alt="{{alt}}">
+					<img class="center-block img-thumbnail img-fluid" id="coverArt" ng-src="{{src}}" alt="{{alt}}">
 	
 					<div id="details">
 						<p id="title" class="media-heading">{{title}}</p>
@@ -38,13 +35,13 @@
 					</div>
 	
 	     		<div id="controls">
-						<button type="button" id="love" class="pull-left btn btn-default" ng-click="sendCommand('+');"> <span class="glyphicon glyphicon-thumbs-up"></span> </button>
-						<button id="pauseplay" type="button" class="btn btn-default" ng-click="sendCommand('p');"> <span class="glyphicon glyphicon-pause"></span> </button>
-						<button type="button" class="btn btn-default" ng-click="sendCommand('n');"> <span class="glyphicon glyphicon-fast-forward"></span> </button> 
-						<button type="button" class="btn btn-default" ng-click="sendCommand('(');"> <span class="glyphicon glyphicon-volume-down"></span> </button>
-						<button type="button" class="btn btn-default" ng-click="sendCommand(')');"> <span class="glyphicon glyphicon-volume-up"></span> </button>
-						<button type="button" title="Tired (shelve for a month)" class="btn btn-default" ng-click="sendCommand('t');"> <span class="glyphicon glyphicon-calendar"></span> </button>
-						<button type="button" class="pull-right btn btn-default" ng-click="sendCommand('-');"> <span class="glyphicon glyphicon-thumbs-down"></span> </button>
+						<button type="button" id="love" class="pull-left btn btn-primary bi-hand-thumbs-up" ng-click="sendCommand('+');"> </button>
+						<button id="pauseplay" type="button" class="btn btn-primary bi-pause-btn" ng-click="sendCommand('p');"> </button>
+						<button type="button" class="btn btn-primary bi-skip-forward" ng-click="sendCommand('n');">  </button> 
+						<button type="button" class="btn btn-primary bi-volume-down" ng-click="sendCommand('(');">  </button>
+						<button type="button" class="btn btn-primary bi-volume-up" ng-click="sendCommand(')');">  </button>
+						<button type="button" title="Tired (shelve for a month)" class="btn btn-primary bi-calendar" ng-click="sendCommand('t');"> </button>
+						<button type="button" class="pull-right btn btn-primary bi-hand-thumbs-down" ng-click="sendCommand('-');"> </span> </button>
 					</div>
 				</div> <!-- End text-center -->
 			</div> <!-- End Player -->
@@ -54,7 +51,7 @@
 		<script src="/socket.io/socket.io.js"></script>
 		<script src="/js/jquery-2.1.1.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
-		<script src="/js/bootstrap.min.js"></script>
+		<script src="/js/bootstrap.bundle.min.js"></script>
 		<script src="/js/main.js"></script>
 	</body>
 </html>

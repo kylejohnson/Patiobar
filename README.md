@@ -20,7 +20,7 @@ A great way to control Pandora / Pianobar on a Raspberry Pi
 Install
 -------
 Either
-`curl -s https://github.com/kylejohnson/Patiobar/blob/master/install.sh | bash`
+`curl -s https://raw.githubusercontent.com/kylejohnson/Patiobar/master/install.sh | bash`
 or 
 ```bash
 git clone https://github.com/kylejohnson/Patiobar.git

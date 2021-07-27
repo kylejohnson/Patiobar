@@ -61,9 +61,9 @@ function SongController($scope, socket) {
 		$scope.rating = msg.rating;
 
 		if (msg.rating == 1) {
-			document.getElementById("love").className = "btn btn-success pull-left";
+			document.getElementById("love").className = "btn btn-success pull-left bi-hand-thumbs-up";
 		} else {
-			document.getElementById("love").className = "btn btn-default pull-left";
+			document.getElementById("love").className = "btn btn-primary pull-left bi-hand-thumbs-up";
 
 		}
 	});

@@ -68,6 +68,16 @@ function SongController($scope, socket) {
 		}
 	});
 
+        socket.on('volume', function(msg) {
+          var vol = msg.volume;
+          document.getElementById("currentVol").innerHTML = vol;
+        });
+
+        socket.on('newvolume', function(msg) {
+          var vol = msg.volume;
+          document.getElementById("currentVol").innerHTML = vol;
+        });
+
 	$scope.sendCommand = function(action) {
 		socket.emit('action', { action: action });
 	}
@@ -76,6 +86,9 @@ function SongController($scope, socket) {
 		$(this).children().toggleClass('glyphicon-pause glyphicon-play');
 	});
 
+	$("#resetVol").click(function() {
+           socket.emit('action', { action: '^'});
+	});
 	socket.on('lovehate', function(msg) {
 		if (msg.rating == 1) {
 			document.getElementById("love").className = "btn btn-success pull-left";

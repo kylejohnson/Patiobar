@@ -12,6 +12,25 @@ server.listen(listenPort);
 // Routing
 app.use(express.static(__dirname + '/views'));
 
+function readVolume() {
+	var currentVol = fs.readFileSync(process.env.HOME + '/.config/pianobar/state').toString()
+
+    if(currentVol){
+          var v = currentVol.split('\n');
+          var i;
+          var actualVolume;
+          for (i=0; i < v.length; i++){
+             var vol = v[i].split('=');
+             if(vol[0].trim() == 'volume'){
+                actualVolume = vol[1]
+                break;
+             } else {
+               continue;
+             }
+          }
+         io.emit('volume', {volume: actualVolume});
+    }
+}
 function readCurrentSong() {
 	var currentSong = fs.readFileSync(process.env.HOME + '/.config/pianobar/currentSong').toString()
 
@@ -64,6 +83,7 @@ io.on('connection', function(socket) {
 	console.log('a user connected');
 	readCurrentSong();
 	readStations();
+        readVolume();
 
 	socket.on('action', function (data) {
 		var action = data.action.substring(0, 1)
@@ -100,5 +120,13 @@ app.post('/lovehate', function(request, response) {
 	response.send(request.query);
 });
 
+app.post('/volumechange', function(request, response) {
+	newvolume = request.query.volume;
+
+	io.emit('newvolume', { volume: newvolume });
+
+	response.send(request.query);
+
+});
 
 });

@@ -174,3 +174,7 @@ events.forEach(function (eventName) {
 		}
 	});
 });
+
+player.canSeek = false;
+player.canGoPrevious = false;
+player.playbackStatus = "Stopped";

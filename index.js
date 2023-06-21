@@ -124,3 +124,26 @@ app.post('/lovehate', function(request, response) {
 
 
 });
+
+// mpris events
+const events = [
+	"raise",
+	"quit",
+	"next",
+	"previous",
+	"pause",
+	"playpause",
+	"stop",
+	"play",
+	"seek",
+	"position",
+	"open",
+	"volume",
+	"loopStatus",
+	"shuffle",
+];
+events.forEach(function (eventName) {
+	player.on(eventName, function () {
+		console.log("Event:", eventName, arguments);
+	});
+});

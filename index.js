@@ -4,6 +4,13 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var fs = require('fs');
 
+var Player = require("mpris-service");
+var player = Player({
+	name: "Patiobar",
+	identity: "Node.js pianobar controller",
+	supportedInterfaces: ["player"],
+});
+
 var fifo = process.env.PIANOBAR_FIFO || 'ctl';
 var listenPort = process.env.PATIOBAR_PORT || 3000;
 
@@ -16,8 +23,23 @@ function readCurrentSong() {
 	var currentSong = fs.readFileSync(process.env.HOME + '/.config/pianobar/currentSong').toString()
 
 	if (currentSong) {
-			var a = currentSong.split(',,,');
-			io.emit('start', { artist: a[0], title: a[1], album: a[2], coverArt: a[3], rating: a[4], stationName: a[5] });
+		const a = currentSong.split(",,,");
+		io.emit("start", {
+			artist: a[0],
+			title: a[1],
+			album: a[2],
+			coverArt: a[3],
+			rating: a[4],
+			stationName: a[5],
+		});
+		player.metadata = {
+			"mpris:length": 0,
+			"mpris:artUrl": a[3],
+			"xesam:title": a[1],
+			"xesam:album": a[2],
+			"xesam:artist": [a[0]],
+		};
+		player.playbackStatus = "Playing";
 	}
 
 }
@@ -102,3 +124,57 @@ app.post('/lovehate', function(request, response) {
 
 
 });
+
+// mpris events
+const events = [
+	"raise",
+	"quit",
+	"next",
+	"previous",
+	"pause",
+	"playpause",
+	"stop",
+	"play",
+	"seek",
+	"position",
+	"open",
+	"volume",
+	"loopStatus",
+	"shuffle",
+];
+events.forEach(function (eventName) {
+	player.on(eventName, function () {
+		console.log("Event:", eventName, arguments);
+		switch (eventName) {
+			case "quit":
+				PidoraCTL("q");
+				process.exit();
+				break;
+			case "playpause":
+				PidoraCTL("p");
+				if (player.playbackStatus !== "Playing") {
+					player.playbackStatus = "Playing";
+				} else {
+					player.playbackStatus = "Paused";
+				}
+				break;
+			case "play":
+				PidoraCTL("P");
+				player.playbackStatus = "Playing";
+				break;
+			case "pause":
+				PidoraCTL("S");
+				player.playbackStatus = "Paused";
+				break;
+			case "next":
+				PidoraCTL("n");
+				break;
+			default:
+				break;
+		}
+	});
+});
+
+player.canSeek = false;
+player.canGoPrevious = false;
+player.playbackStatus = "Stopped";

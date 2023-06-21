@@ -4,6 +4,13 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var fs = require('fs');
 
+var Player = require("mpris-service");
+var player = Player({
+	name: "Patiobar",
+	identity: "Node.js pianobar controller",
+	supportedInterfaces: ["player"],
+});
+
 var fifo = process.env.PIANOBAR_FIFO || 'ctl';
 var listenPort = process.env.PATIOBAR_PORT || 3000;
 

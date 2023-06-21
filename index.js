@@ -145,5 +145,32 @@ const events = [
 events.forEach(function (eventName) {
 	player.on(eventName, function () {
 		console.log("Event:", eventName, arguments);
+		switch (eventName) {
+			case "quit":
+				PidoraCTL("q");
+				process.exit();
+				break;
+			case "playpause":
+				PidoraCTL("p");
+				if (player.playbackStatus !== "Playing") {
+					player.playbackStatus = "Playing";
+				} else {
+					player.playbackStatus = "Paused";
+				}
+				break;
+			case "play":
+				PidoraCTL("P");
+				player.playbackStatus = "Playing";
+				break;
+			case "pause":
+				PidoraCTL("S");
+				player.playbackStatus = "Paused";
+				break;
+			case "next":
+				PidoraCTL("n");
+				break;
+			default:
+				break;
+		}
 	});
 });
